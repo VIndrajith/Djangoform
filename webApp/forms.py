@@ -22,9 +22,26 @@ class ApplicantForm(forms.Form):
             attrs={'class': 'form-control'}
         )
     )
-    age = forms.IntegerField(
+    roll = forms.IntegerField(
         widget=forms.NumberInput(
             attrs={'class': 'form-control'}
         ),
         min_value = 0
+    )
+
+    course = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
+    )
+
+    email = forms.EmailField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
+    )
+    phone = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'class': 'form-control'}
+        )
     )

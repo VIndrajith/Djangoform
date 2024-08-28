@@ -9,4 +9,7 @@ from django.db import models
 class Applicant(models.Model):
     first_name = models.CharField(max_length=15,default=None)
     last_name = models.CharField(max_length=15,default=None)
-    age = models.IntegerField(default=None)
+    roll = models.IntegerField(null=True,default=None)
+    course = models.CharField(max_length=15,default=None)
+    email = models.EmailField(default=None)
+    phone = models.CharField(max_length=12,default=None)

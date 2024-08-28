@@ -14,8 +14,11 @@ def apps(request):
         if form.is_valid():
             f_name = form.cleaned_data['first_name']
             l_name = form.cleaned_data['last_name']
-            aage = form.cleaned_data['age']
-            appls = Applicant.objects.create(first_name=f_name, last_name=l_name, age=aage)
+            r = form.cleaned_data['roll']
+            c = form.cleaned_data['course']
+            em = form.cleaned_data['email']
+            ph = form.cleaned_data['phone']
+            appls = Applicant.objects.create(first_name=f_name, last_name=l_name, roll=r, course=c, email=em, phone=ph)
             appls.save()
             return redirect('lists')
     form = ApplicantForm()
@@ -32,12 +35,15 @@ def update(request,id):
         if form.is_valid():
             f_name = form.cleaned_data['first_name']
             l_name = form.cleaned_data['last_name']
-            aage = form.cleaned_data['age']
-            appls = Applicant.objects.create(first_name=f_name, last_name=l_name, age=aage)
+            r = form.cleaned_data['roll']
+            c = form.cleaned_data['course']
+            em = form.cleaned_data['email']
+            ph = form.cleaned_data['phone']
+            appls = Applicant.objects.create(first_name=f_name, last_name=l_name, roll=r, course=c, email=em, phone=ph)
             appls.save()
             return redirect('lists')
     applicant = Applicant.objects.get(pk=id)
-    MyForm = ApplicantForm(initial={'first_name': applicant.first_name, 'last_name': applicant.last_name,'age': applicant.age})
+    MyForm = ApplicantForm(initial={'first_name': applicant.first_name, 'last_name': applicant.last_name,'roll': applicant.roll, 'course': applicant.course, 'email': applicant.email, 'phone': applicant.phone})
     return render(request,'update.html',{'form':MyForm,'applicant':applicant})
 
 
@@ -47,10 +53,16 @@ def uprec(request,id):
         if form.is_valid():
             f_name = form.cleaned_data['first_name']
             l_name = form.cleaned_data['last_name']
-            aage = form.cleaned_data['age']
+            r = form.cleaned_data['roll']
+            c = form.cleaned_data['course']
+            em = form.cleaned_data['email']
+            ph = form.cleaned_data['phone']
             dat = Applicant.objects.get(id=id)
             dat.first_name = f_name
             dat.last_name = l_name
-            dat.age = aage
+            dat.roll = r
+            dat.course = c
+            dat.email = em
+            dat.phone = ph
             dat.save()
         return redirect('lists')
